@@ -1,14 +1,20 @@
-import { Component, OnInit, ViewChild, ElementRef, ChangeDetectorRef, TemplateRef } from '@angular/core';
-import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
+import {
+  Component,
+  OnInit,
+  ViewChild,
+  ElementRef,
+  ChangeDetectorRef,
+  TemplateRef
+} from "@angular/core";
+import { BsModalService, BsModalRef } from "ngx-bootstrap/modal";
 declare const $: JQueryStatic;
 
 @Component({
-  selector: 'app-pricing-options',
-  templateUrl: './pricing-options.component.html',
-  styleUrls: ['./pricing-options.component.scss']
+  selector: "app-pricing-options",
+  templateUrl: "./pricing-options.component.html",
+  styleUrls: ["./pricing-options.component.scss"]
 })
 export class PricingOptionsComponent implements OnInit {
-
   dtOptions: DataTables.Settings = {};
   dataTable: any;
   flag = true;
@@ -17,13 +23,16 @@ export class PricingOptionsComponent implements OnInit {
   @ViewChild("dataTable") table: ElementRef;
   @ViewChild("priceForm") form;
   input: any = {};
-  constructor(private modalService: BsModalService, private chRef: ChangeDetectorRef) {
+  constructor(
+    private modalService: BsModalService,
+    private chRef: ChangeDetectorRef
+  ) {
     this.input = {
       name: "",
       savings: null,
       residuals: null,
       rates: null
-    }
+    };
   }
   add_btn = false;
   edit_btn = false;
@@ -33,22 +42,20 @@ export class PricingOptionsComponent implements OnInit {
   value;
   modalPrice(template: TemplateRef<any>, name: any, value?: any) {
     this.openModal(template);
-    if (name == 'add') {
+    if (name == "add") {
       this.add_btn = true;
       this.edit_btn = false;
       this.input = {};
-      this.value = '';
-    }
-    else if (name == 'edit') {
+      this.value = "";
+    } else if (name == "edit") {
       this.input = {};
       Object.assign(this.input, value);
       this.value = this.input;
-      console.log(this.value)
+      console.log(this.value);
       this.edit_btn = true;
       this.add_btn = false;
-    }
-    else {
-      this.value = ''
+    } else {
+      this.value = "";
       this.edit_btn = false;
       this.add_btn = false;
     }
@@ -58,7 +65,7 @@ export class PricingOptionsComponent implements OnInit {
     console.log("actual length :", this.list.length);
     console.log("new length :", this.input.id);
     this.list.push(this.input);
-    this.modalRef.hide()
+    this.modalRef.hide();
   }
   editPrice() {
     this.list[this.value.id] = this.value;
@@ -76,19 +83,17 @@ export class PricingOptionsComponent implements OnInit {
     for (let index = 0; index < 10; index++) {
       this.list.push({
         id: index,
-        name: + index + 1 * 25,
+        name: +index + 1 * 25,
         savings: (index + 1) * 27,
         residuals: (index + 1) * 31,
-        rates: (index + 1) / 50 * 100
-      })
+        rates: ((index + 1) / 50) * 100
+      });
     }
   }
   ngOnInit() {
     this.listOfPrices();
-    this.DataTablesFunctionCallAfterDataInit()
+    this.DataTablesFunctionCallAfterDataInit();
   }
-
-
 
   DataTablesFunctionCallAfterDataInit() {
     if (!this.flag) {
@@ -97,15 +102,12 @@ export class PricingOptionsComponent implements OnInit {
     }
 
     this.chRef.detectChanges();
-    const table: any = $('table');
+    const table: any = $("table");
     this.dataTable = table.DataTable({
       // enables horizontal scrolling
-      dom: 'lBfrtip',
-      'autoWidth': false,
-      lengthMenu: [
-        [-1],
-        ['Show all']
-      ],
+      dom: "lBfrtip",
+      autoWidth: false,
+      lengthMenu: [[-1], ["Show all"]]
     });
   }
 }

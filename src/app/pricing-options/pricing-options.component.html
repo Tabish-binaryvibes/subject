@@ -6,7 +6,8 @@
           <h4>$ Select Pricing Options</h4>
         </div>
         <div class="col-md-2 offset-md-4">
-          <button class="btn btn-info" (click)="modalPrice(template,'add')"><span class="fa fa-plus"></span>
+          <button class="btn btn-info" (click)="modalPrice(template, 'add')">
+            <span class="fa fa-plus"></span>
             Add Record
           </button>
         </div>
@@ -30,8 +31,14 @@
             <td>${{ item.residuals }}</td>
             <td>${{ item.rates }}</td>
             <td>
-              <span class="fa fa-edit ml-2" (click)="modalPrice(template,'edit',item)"></span>
-              <span class="fa fa-trash-o ml-2" (click)="deleteModalPrice(item.id)"></span>
+              <span
+                class="fa fa-edit ml-2"
+                (click)="modalPrice(template, 'edit', item)"
+              ></span>
+              <span
+                class="fa fa-trash-o ml-2"
+                (click)="deleteModalPrice(item.id)"
+              ></span>
             </td>
           </tr>
           <tr *ngIf="list.length == 0" style="text-align: center;">
@@ -48,9 +55,18 @@
 <!-- Modal Template -->
 <ng-template #template>
   <div class="modal-header">
-    <h4 class="modal-title pull-left" *ngIf="add_btn && !edit_btn">Add Details</h4>
-    <h4 class="modal-title pull-left" *ngIf="edit_btn && !add_btn">Edit Details</h4>
-    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+    <h4 class="modal-title pull-left" *ngIf="add_btn && !edit_btn">
+      Add Details
+    </h4>
+    <h4 class="modal-title pull-left" *ngIf="edit_btn && !add_btn">
+      Edit Details
+    </h4>
+    <button
+      type="button"
+      class="close pull-right"
+      aria-label="Close"
+      (click)="modalRef.hide()"
+    >
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
@@ -59,9 +75,20 @@
       <div class="row">
         <div class="col-md-12 form-group">
           <label for="">Name</label>
-          <input id="name" name="name" type="text" class="form-control" required minlength="4" [(ngModel)]="input.name"
-            #name="ngModel">
-          <div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert alert-danger">
+          <input
+            id="name"
+            name="name"
+            type="text"
+            class="form-control"
+            required
+            minlength="4"
+            [(ngModel)]="input.name"
+            #name="ngModel"
+          />
+          <div
+            *ngIf="name.invalid && (name.dirty || name.touched)"
+            class="alert alert-danger"
+          >
             <div *ngIf="name.errors.required">
               Name is required.
             </div>
@@ -74,10 +101,19 @@
       <div class="row">
         <div class="col-md-12">
           <label for="">Savings</label>
-          <input type="number" name="savings" class="form-control" required [(ngModel)]="input.savings"
-            #savings="ngModel">
+          <input
+            type="number"
+            name="savings"
+            class="form-control"
+            required
+            [(ngModel)]="input.savings"
+            #savings="ngModel"
+          />
 
-          <div *ngIf="savings.invalid && (savings.dirty || savings.touched)" class="alert alert-danger">
+          <div
+            *ngIf="savings.invalid && (savings.dirty || savings.touched)"
+            class="alert alert-danger"
+          >
             <div *ngIf="savings.errors.required">
               savings is required.
             </div>
@@ -87,9 +123,18 @@
       <div class="row">
         <div class="col-md-12">
           <label for="">Residuals</label>
-          <input type="number" name="residuals" class="form-control" required [(ngModel)]="input.residuals"
-            #residuals="ngModel">
-          <div *ngIf="residuals.invalid && (residuals.dirty || residuals.touched)" class="alert alert-danger">
+          <input
+            type="number"
+            name="residuals"
+            class="form-control"
+            required
+            [(ngModel)]="input.residuals"
+            #residuals="ngModel"
+          />
+          <div
+            *ngIf="residuals.invalid && (residuals.dirty || residuals.touched)"
+            class="alert alert-danger"
+          >
             <div *ngIf="residuals.errors.required">
               residuals is required.
             </div>
@@ -99,8 +144,18 @@
       <div class="row">
         <div class="col-md-12">
           <label for="">Rates</label>
-          <input name="rates" type="number" class="form-control" required [(ngModel)]="input.rates" #rates="ngModel">
-          <div *ngIf="rates.invalid && (rates.dirty || rates.touched)" class="alert alert-danger">
+          <input
+            name="rates"
+            type="number"
+            class="form-control"
+            required
+            [(ngModel)]="input.rates"
+            #rates="ngModel"
+          />
+          <div
+            *ngIf="rates.invalid && (rates.dirty || rates.touched)"
+            class="alert alert-danger"
+          >
             <div *ngIf="rates.errors.required">
               rates are required.
             </div>
@@ -109,10 +164,22 @@
       </div>
       <div class="row mt-3">
         <div class="col-md-12">
-          <button [disabled]="priceForm.invalid" *ngIf="add_btn" class="btn btn-primary" (click)="addPrice()">Add
-            Record</button>
-          <button [disabled]="priceForm.invalid" *ngIf="edit_btn" class="btn btn-info ml-3" (click)="editPrice()">Edit
-            Record</button>
+          <button
+            [disabled]="priceForm.invalid"
+            *ngIf="add_btn"
+            class="btn btn-primary"
+            (click)="addPrice()"
+          >
+            Add Record
+          </button>
+          <button
+            [disabled]="priceForm.invalid"
+            *ngIf="edit_btn"
+            class="btn btn-info ml-3"
+            (click)="editPrice()"
+          >
+            Edit Record
+          </button>
         </div>
       </div>
     </form>
