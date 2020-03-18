@@ -1,0 +1,31 @@
+<div class="container">
+  <form>
+    <div class="row">
+      <div class="col-md-6">
+        <input
+          type="text"
+          [(ngModel)]="id"
+          class="form-control"
+          name="name"
+          (ngModelChange)="searchTextModel$.next($event)"
+        />
+      </div>
+    </div>
+  </form>
+</div>
+<div>
+  <table class="table">
+    <thead>
+      <th>User ID</th>
+      <th>Title</th>
+      <th>ID</th>
+    </thead>
+    <tbody>
+      <tr *ngFor="let items of dataSet">
+        <td>{{ items?.userId }}</td>
+        <td>{{ items?.title }}</td>
+        <td>{{ items?.id }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
